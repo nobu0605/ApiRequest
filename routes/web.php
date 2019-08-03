@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::get('/index', 'ApiRequestController@index');
 Route::post('/index', 'ApiRequestController@apiRequest');
+Route::get('/index2', 'ApiRequestController@apiRequest2');
