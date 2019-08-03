@@ -23,46 +23,40 @@ class ApiRequestController extends Controller
         $client = new Client();
         $image_path = $request->input('image_path');
 
-        $request_timestamp = time();
-
-        $base_url = 'https://labs.goo.ne.jp/api/hiragana';
+        $base_url = '：http://example.com/';
         $options = [
-            'headers' => [
-                'Content-Type' => 'application/x-www-form-urlencoded',
-                'Accept' => 'application/json',
-            ],
             'form_params' => [
-                'sentence' => $image_path,
-                'app_id' => 'e92fd7b7754298d501523c2b4612275e854677a8adbf3b4184ff173464297afc',
-                'output_type' => 'hiragana',
+                'image_path' => $image_path
             ]
         ];
 
         try {
+            $request_timestamp = time();
             $response = $client->request(
                 'POST',
                 $base_url,
                 $options
             );
             $response_timestamp = time();
+            $response_body = (string) $response->getBody();
+            $response_body = json_decode($response_body, true);
+
+            if ($response_body['message'] == false) {
+                throw new Exception();
+            }
         } catch (Exception $e) {
             return view(
                 '/index',
-                [
-                    'error_message' => 'エラーが発生しました。DBにデータが保存されませんでした。'
-                ]
+                ['error_message' => 'エラーが発生しました。DBにデータが保存されませんでした。']
             );
         }
 
-        $response_body = (string) $response->getBody();
-        $response_body = json_decode($response_body, true);
-
         $param = [
             'image_path' => $image_path,
-            'success' => $response_body['converted'],
-            'message' => $response_body['output_type'],
-            'class' => $request_timestamp,
-            'confidence' => 1,
+            'success' => $response_body['success'],
+            'message' => $response_body['message'],
+            'class' => $response_body['estimated_data']['class'],
+            'confidence' => $response_body['estimated_data']['confidence'],
             'request_timestamp' => $request_timestamp,
             'response_timestamp' => $response_timestamp,
         ];
@@ -71,9 +65,7 @@ class ApiRequestController extends Controller
 
         return view(
             '/index',
-            [
-                'success' => 'DBにデータが保存されました。'
-            ]
+            ['success' => 'DBにデータが保存されました。']
         );
     }
 }
