@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/action_index', 'ApiRequestController@action_index');
+Route::get('/index', 'ApiRequestController@index');
+Route::post('/index', 'ApiRequestController@apiRequest');
