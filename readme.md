@@ -5,5 +5,5 @@ ApiへHttpリクエストを送り、DBにデータを保存します。
 Guzzle, PHP HTTP client<br>
 https://github.com/guzzle/guzzle
 
-install
+install<br/>
 `composer require guzzlehttp/guzzle`
