@@ -6,4 +6,4 @@ Guzzle, PHP HTTP client<br>
 https://github.com/guzzle/guzzle
 
 install
-composer require guzzlehttp/guzzle
+`composer require guzzlehttp/guzzle`
