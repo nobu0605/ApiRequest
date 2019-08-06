@@ -41,7 +41,7 @@ class ApiRequestController extends Controller
             $response_body = (string) $response->getBody();
             $response_body = json_decode($response_body, true);
 
-            if ($response_body['message'] == false) {
+            if ($response_body['success'] == false) {
                 throw new Exception();
             }
         } catch (Exception $e) {
