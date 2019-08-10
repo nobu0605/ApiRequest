@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="links">
-                    <span>文字を入力してください。<br/>日本語文字列を、ひらがな もしくは カタカナ による記載に変換します。</span>
+                    <span>文字を入力してください。<br/>日本語文字列を、ひらがな もしくは カタカナ に変換します。</span>
                     <form action='/index' method="post">
                         {{ csrf_field() }}
                         <input name="inputText" type='text'>
