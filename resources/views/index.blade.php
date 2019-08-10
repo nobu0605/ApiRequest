@@ -62,10 +62,10 @@
                 </div>
 
                 <div class="links">
-                    <span>画像ファイルパスを入力してください</span>
+                    <span>文字を入力してください。<br/>日本語文字列を、ひらがな もしくは カタカナ による記載に変換します。</span>
                     <form action='/index' method="post">
                         {{ csrf_field() }}
-                        <input name="image_path" type='text'>
+                        <input name="inputText" type='text'>
                         <input type='submit'>
                     </form>
                     @if (isset($error_message))

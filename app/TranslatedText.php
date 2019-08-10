@@ -4,14 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ai_analysis_log extends Model
+class TranslatedText extends Model
 {
     protected $fillable = [
-        'image_path',
-        'success',
-        'message',
-        'class',
-        'confidence',
+        'output_type',
+        'inputText',
+        'translatedText',
         'request_timestamp',
         'response_timestamp'
     ];
